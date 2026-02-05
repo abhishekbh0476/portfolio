@@ -7,7 +7,7 @@ const Profiles = () => {
     {
       name: "GitHub",
       url: "https://github.com/abhishekbh0476",
-      icon: "FaGithub",
+      icon: FaGithub,
       color: "#FFFFFF"
     },
     {
