@@ -498,17 +498,115 @@ section {
   transform: translateX(5px);
 }
 
+/* Experience Section */
+.experience {
+  background: #0a0a0f;
+}
+
+.experience-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 50px;
+}
+
+.experience-card {
+  background: linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(26, 26, 46, 0.6) 100%);
+  backdrop-filter: blur(10px);
+  border: 2px solid #ff6b35;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(255, 107, 53, 0.2);
+  transition: all 0.3s ease;
+}
+
+.experience-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(255, 107, 53, 0.4);
+}
+
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 25px;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+.experience-company {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #ffd93d;
+  margin-bottom: 4px;
+}
+
+.experience-role {
+  font-size: 1rem;
+  color: #ff6b35;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.experience-meta {
+  text-align: right;
+}
+
+.experience-date {
+  font-size: 0.95rem;
+  color: #B0BEC5;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.experience-location {
+  font-size: 0.9rem;
+  color: #B0BEC5;
+}
+
+.experience-body {
+  padding: 20px 25px;
+}
+
+.experience-points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.experience-points li {
+  color: #e0e0e0;
+  line-height: 1.7;
+  padding-left: 20px;
+  position: relative;
+  font-size: 0.97rem;
+}
+
+.experience-points li::before {
+  content: '▸';
+  color: #ff6b35;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
 /* Footer */
 .footer {
   background: #0a0a0f;
   border-top: 4px solid #ff6b35;
-  padding: 40px 20px;
+  padding: 50px 20px 30px;
   text-align: center;
 }
 
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
 }
 
 .footer-info h3 {
@@ -522,10 +620,74 @@ section {
   font-size: 1.1rem;
 }
 
+.footer-contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+}
+
+.footer-contact-item {
+  color: #e0e0e0;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: 1px solid rgba(255, 107, 53, 0.4);
+  border-radius: 30px;
+  background: rgba(255, 107, 53, 0.08);
+  transition: all 0.3s ease;
+}
+
+.footer-contact-item:hover {
+  background: rgba(255, 107, 53, 0.2);
+  border-color: #ff6b35;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.footer-contact-icon {
+  font-size: 1.1rem;
+}
+
+.footer-resume-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #ff6b35, #ffd93d);
+  color: #0a0a0f;
+  padding: 11px 26px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+}
+
+.footer-resume-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.6);
+  filter: brightness(1.1);
+}
+
 .footer-year {
-  margin-top: 20px;
-  color: #666;
+  color: #555;
   font-size: 0.9rem;
+}
+
+/* Private badge for projects */
+.private-badge {
+  display: inline-block;
+  color: #B0BEC5;
+  font-size: 0.95rem;
+  padding: 10px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.05);
 }
 
 /* Responsive Design */
@@ -561,6 +723,20 @@ section {
   
   .stat-bar {
     order: 3;
+  }
+
+  .experience-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .experience-meta {
+    text-align: left;
+  }
+
+  .footer-contact {
+    flex-direction: column;
+    align-items: center;
   }
 }
 

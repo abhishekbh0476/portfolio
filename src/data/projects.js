@@ -1,5 +1,19 @@
 const projects = [
   {
+    name: "Complaint / Issue Reporting Application",
+    category: "Full Stack",
+    tech: "Node.js, Express.js, MongoDB, Socket.io, JWT, Multer",
+    link: "https://github.com/abhishekbh0476/Complaint-Issue-Reporting-App",
+    description: "Full-stack complaint management system with real-time WebSocket notifications, admin dashboard, file attachments, MongoDB Atlas integration, and role-based authentication."
+  },
+  {
+    name: "SecureLife AI Insurance Management System",
+    category: "Full Stack / AI",
+    tech: "Spring Boot 3.2, React 18, MySQL, Stripe, JWT, OAuth2",
+    link: null,
+    description: "AI-powered insurance platform with JWT auth, Google OAuth2, Stripe card & UPI QR payments, AI premium prediction, fraud detection, and analytics dashboard."
+  },
+  {
     name: "NLP Contextual Question Answering System",
     category: "AI / NLP",
     tech: "Python, Flask, RoBERTa, spaCy, NLTK",

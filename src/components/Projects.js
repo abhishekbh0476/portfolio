@@ -11,6 +11,8 @@ const Projects = () => {
       case 'Machine Learning': return '#FF5722';
       case 'Blockchain': return '#FFC107';
       case 'Deep Learning / Computer Vision': return '#795548';
+      case 'Full Stack': return '#00BCD4';
+      case 'Full Stack / AI': return '#E91E63';
       default: return '#666';
     }
   };
@@ -29,6 +31,9 @@ const Projects = () => {
             </div>
             <div className="match-content">
               <h3 className="match-title">{project.name}</h3>
+              {project.description && (
+                <p className="match-description">{project.description}</p>
+              )}
               <div className="tech-stack">
                 {project.tech.split(', ').map((tech, techIndex) => (
                   <span key={techIndex} className="tech-badge">{tech}</span>
@@ -36,14 +41,18 @@ const Projects = () => {
               </div>
             </div>
             <div className="match-footer">
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="view-match-btn"
-              >
-                View Match →
-              </a>
+              {project.link ? (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="view-match-btn"
+                >
+                  View Match →
+                </a>
+              ) : (
+                <span className="private-badge">🔒 Private Repository</span>
+              )}
             </div>
           </div>
         ))}
