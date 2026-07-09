@@ -41,18 +41,30 @@ const Projects = () => {
               </div>
             </div>
             <div className="match-footer">
-              {project.link ? (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="view-match-btn"
-                >
-                  View Match →
-                </a>
-              ) : (
-                <span className="private-badge">🔒 Private Repository</span>
-              )}
+              <div className="match-footer-links">
+                {project.liveLink && (
+                  <a
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="live-demo-btn"
+                  >
+                    🚀 Live Demo
+                  </a>
+                )}
+                {project.link ? (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="view-match-btn"
+                  >
+                    View Match →
+                  </a>
+                ) : (
+                  <span className="private-badge">🔒 Private Repository</span>
+                )}
+              </div>
             </div>
           </div>
         ))}

@@ -1,5 +1,13 @@
 const projects = [
   {
+    name: "CortexAI — Enterprise Knowledge Intelligence Platform",
+    category: "Full Stack / AI",
+    tech: "React 19, FastAPI, LangGraph, LangChain, Groq (Llama 3.3 70B), FAISS, fastembed, Supabase PostgreSQL, Supabase Storage, JWT, SQLAlchemy 2.0, Alembic, PyMuPDF",
+    link: "https://github.com/abhishekbh0476/CortexAI",
+    liveLink: "https://cortexai-bsbp-seven.vercel.app",
+    description: "Production-grade RAG platform for enterprise knowledge management. Upload PDFs, DOCX, PPTX, XLSX and query them with natural language. Powered by a 7-node LangGraph multi-agent pipeline (Planner → Context Manager → Query Rewriter → Retriever → Fact Validator → Citation → Response Generator) with anti-hallucination, SSE streaming, conversational memory, per-user FAISS indexes, JWT auth, and a full MUI dashboard."
+  },
+  {
     name: "Complaint / Issue Reporting Application",
     category: "Full Stack",
     tech: "Node.js, Express.js, MongoDB, Socket.io, JWT, Multer",
