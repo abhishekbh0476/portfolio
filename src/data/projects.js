@@ -31,7 +31,8 @@ const projects = [
     name: "TaskFlow – Smart Task Reminder App",
     category: "Frontend",
     tech: "HTML, JavaScript, Tailwind CSS",
-    link: "https://github.com/abhishekbh0476/taskflow"
+    link: "https://github.com/abhishekbh0476/taskflow",
+    liveLink: "https://taskflow-haib7o3bg-abhishek-b-hs-projects-ba695908.vercel.app/"
   },
   {
     name: "DiaSense – AI-Driven IoT Diabetes Prediction",
