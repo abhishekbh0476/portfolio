@@ -19,26 +19,6 @@ const TAGS = [
   'FAISS', 'OpenCV', 'Solidity', 'Web3.js', 'Docker', 'Git',
 ];
 
-const useReveal = (threshold = 0.12) => {
-  const ref = useRef(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add('revealed');
-          observer.unobserve(el);
-        }
-      },
-      { threshold }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [threshold]);
-  return ref;
-};
-
 const SkillBar = ({ skill, animate }) => (
   <div className="skill-bar-row">
     <div className="skill-bar-header">
@@ -59,52 +39,51 @@ const SkillBar = ({ skill, animate }) => (
 );
 
 const Skills = () => {
-  const titleRef = useReveal();
-  const barsRef = useReveal();
-  const tagsRef = useReveal();
+  const sectionRef = useRef(null);
+  const titleRef = useRef(null);
   const [animated, setAnimated] = useState(false);
 
-  // Trigger bar animations when the bars panel comes into view
+  // Title reveal
   useEffect(() => {
-    const el = barsRef.current;
+    const el = titleRef.current;
     if (!el) return;
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setAnimated(true);
-          observer.unobserve(el);
-        }
-      },
+      ([entry]) => { if (entry.isIntersecting) { el.classList.add('revealed'); observer.unobserve(el); } },
       { threshold: 0.1 }
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, [barsRef]);
+  }, []);
+
+  // Trigger bar fill animation when section enters view
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setAnimated(true); observer.unobserve(el); } },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section className="skills" id="skills">
+    <section className="skills" id="skills" ref={sectionRef}>
       <div ref={titleRef} className="section-header reveal-item">
         <h2 className="section-title">Player Stats</h2>
         <p className="section-subtitle">Core proficiencies and technology expertise</p>
       </div>
 
       <div className="skills-layout">
-        <div
-          ref={barsRef}
-          className="skills-bars reveal-item"
-          style={{ '--reveal-delay': '0ms' }}
-        >
+        {/* No reveal-item here — panels are always visible */}
+        <div className="skills-bars">
           <h3 className="skills-sub-title">Proficiency</h3>
           {SKILLS.map(skill => (
             <SkillBar key={skill.name} skill={skill} animate={animated} />
           ))}
         </div>
 
-        <div
-          ref={tagsRef}
-          className="skills-tags-panel reveal-item"
-          style={{ '--reveal-delay': '120ms' }}
-        >
+        <div className="skills-tags-panel">
           <h3 className="skills-sub-title">Technologies</h3>
           <div className="skills-tags">
             {TAGS.map(tag => (
