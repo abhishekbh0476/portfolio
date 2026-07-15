@@ -1,14 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
-import useScrollReveal from '../hooks/useScrollReveal';
 
 const SKILLS = [
   { name: 'React / Frontend', level: 90, color: '#61dafb' },
   { name: 'Python / FastAPI', level: 88, color: '#ff6b35' },
-  { name: 'AI / ML & Deep Learning', level: 82, color: '#9C27B0' },
   { name: 'RAG & LLM Pipelines', level: 85, color: '#E91E63' },
+  { name: 'AI / ML & Deep Learning', level: 82, color: '#9C27B0' },
+  { name: 'NLP & LangChain', level: 80, color: '#2196F3' },
   { name: 'Node.js / Express', level: 80, color: '#4CAF50' },
   { name: 'Databases (SQL / NoSQL)', level: 78, color: '#FFC107' },
-  { name: 'NLP & LangChain', level: 80, color: '#2196F3' },
   { name: 'Docker / DevOps', level: 65, color: '#00BCD4' },
 ];
 
@@ -19,6 +18,26 @@ const TAGS = [
   'TensorFlow', 'PyTorch', 'Scikit-learn', 'LangChain', 'LangGraph',
   'FAISS', 'OpenCV', 'Solidity', 'Web3.js', 'Docker', 'Git',
 ];
+
+const useReveal = (threshold = 0.12) => {
+  const ref = useRef(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add('revealed');
+          observer.unobserve(el);
+        }
+      },
+      { threshold }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [threshold]);
+  return ref;
+};
 
 const SkillBar = ({ skill, animate }) => (
   <div className="skill-bar-row">
@@ -40,35 +59,52 @@ const SkillBar = ({ skill, animate }) => (
 );
 
 const Skills = () => {
-  const titleRef = useScrollReveal();
-  const sectionRef = useRef(null);
+  const titleRef = useReveal();
+  const barsRef = useReveal();
+  const tagsRef = useReveal();
   const [animated, setAnimated] = useState(false);
 
+  // Trigger bar animations when the bars panel comes into view
   useEffect(() => {
+    const el = barsRef.current;
+    if (!el) return;
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setAnimated(true); observer.disconnect(); } },
-      { threshold: 0.2 }
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setAnimated(true);
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.1 }
     );
-    if (sectionRef.current) observer.observe(sectionRef.current);
+    observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [barsRef]);
 
   return (
-    <section className="skills" id="skills" ref={sectionRef}>
+    <section className="skills" id="skills">
       <div ref={titleRef} className="section-header reveal-item">
         <h2 className="section-title">Player Stats</h2>
         <p className="section-subtitle">Core proficiencies and technology expertise</p>
       </div>
 
       <div className="skills-layout">
-        <div className="skills-bars reveal-item" style={{ '--reveal-delay': '0ms' }}>
+        <div
+          ref={barsRef}
+          className="skills-bars reveal-item"
+          style={{ '--reveal-delay': '0ms' }}
+        >
           <h3 className="skills-sub-title">Proficiency</h3>
           {SKILLS.map(skill => (
             <SkillBar key={skill.name} skill={skill} animate={animated} />
           ))}
         </div>
 
-        <div className="skills-tags-panel reveal-item" style={{ '--reveal-delay': '100ms' }}>
+        <div
+          ref={tagsRef}
+          className="skills-tags-panel reveal-item"
+          style={{ '--reveal-delay': '120ms' }}
+        >
           <h3 className="skills-sub-title">Technologies</h3>
           <div className="skills-tags">
             {TAGS.map(tag => (
